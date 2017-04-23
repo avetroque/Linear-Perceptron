@@ -9,11 +9,6 @@ import random as random
 import matplotlib.pyplot as plt
 import math
 
-'''
-# Not good to declare tuple like this. Better use np.array
-x0 = ((1,5),(1,4),(1.5,4),(2.5,3),(2.5,1.5),(2.5,2),(3.5,5),(3.5,4),(4.5,5),(4.5,4))
-print (type(x0)) #class tuple
-'''
 
 x1=np.array([1, 1, 1.5, 2.5, 2.5, 2.5, 2.5, 3.5, 3.5, 4.5, 4.5])
 x2=np.array([5, 4, 4, 3, 1.5, 2, 5, 5, 4, 5, 4])
@@ -25,11 +20,6 @@ y=np.array([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
 print('x is ')
 print (x)
 dimension = x.ndim #extract dimension/features of data 
-
-#Array multiplication such as x1*x2 is equal to dot 
-#product in python. No need to transpose.
-#print ((x1*x2).sum()) 
-
 
 #Initilization
 deltaTheta = np.zeros((dimension))
@@ -52,12 +42,11 @@ for q in range(1000):
 	deltaB = 2*(gamma-y[i])*(1-gamma)*gamma
 
 	for n in range(2):
-		#print (n)
 		deltaTheta[n] = 2*(gamma-y[i])*(1-gamma)*gamma*x[i,n]
-
 	
 		#4 Update parameters
 		Theta[n] = Theta[n] - alpha*deltaTheta[n]	
+	
 	b = b - alpha*deltaB
 	
 	print('Theta 0: ',Theta[0],'Theta 1: ',Theta[1])
@@ -81,15 +70,6 @@ xall=np.array([0 ,0])
 
 gamma_all=np.zeros((len(x1mesh),len(x2mesh)))
 print (gamma_all)
-'''
-for i in range (6):
-	for j in range(6):
-		gamma_all[i,j] = np.random.randint(0,5)
-		
-
-print (gamma_all)
-'''
-
 
 
 for i in range(len(x1mesh)):
@@ -101,36 +81,9 @@ for i in range(len(x1mesh)):
 		gamma_all[i,j] = 1/(1+math.exp(-dotprodall))
 
 
-
-'''
-for i in range(len(x1mesh)):
-	for j in range(len(x2mesh)):
-		
-		xall = [i,j]		
-		dotprodall = ((Theta *xall).sum()) + b  
-		
-		gamma_all[i,j] = 1/(1+math.exp(-dotprodall))
-
-'''
-
 		
 print (gamma_all)
 plt.imshow(gamma_all,origin='lower')
 cbar=plt.colorbar()
 plt.show()
 
-
-
-'''
-#This works
-plt.plot(x[:,0],x[:,1],'^r')
-plt.show()
-'''
-
-
-'''
-#This works as well
-fig, ax = plt.subplots()
-ax.scatter(x[:,0],x[:,1])
-plt.show()
-'''
