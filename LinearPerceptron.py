@@ -9,6 +9,7 @@ import random as random
 import matplotlib.pyplot as plt
 import math
 
+#just a random comment here to  check git is working or not
 
 x1=np.array([1, 1, 1.5, 2.5, 2.5, 2.5, 2.5, 3.5, 3.5, 4.5, 4.5])
 x2=np.array([5, 4, 4, 3, 1.5, 2, 5, 5, 4, 5, 4])
